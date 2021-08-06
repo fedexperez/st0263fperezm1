@@ -19,6 +19,13 @@ Python 3.7 - 3.8 (Fue probado y funcional en estas dos versiones del software)
 El desarrollo del presente laboratorio está enfocado a la aplicación de los conocimientos adquiridos en el curso de telemática, específicamente al diseño, implementación y despliegue de una sala de chat con el uso de sockets y los servicios de la nube de AWS.  
 Para lograrlo debemos de seguir una serie de pasos enfocados al diseño lógico de la arquitectura y posteriormente ponerlo en práctica mediante el uso de Python y AWS.
 
+La aplicación está compuesta de distintas archivos de los cuales se hablará a continuación: 
+
++ Se tiene un archivo llamado server.py el cual es el encargado de recibir y enviar los mensajes a los clientes y aceptar a los clientes para que puedan conectarse y se les permita enviar mensajes.
+
++ Se tiene un archivo llamado client.py el cual es el encargado de conectarse con el servidor y asignar un nombre de usuario con el cual identificarse, también de enviar los mensajes al servidor para que los demás clientes puedan verlos.
+
+
 # Instalación
 
 ## Despliegue del proyecto en AWS
