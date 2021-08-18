@@ -16,7 +16,7 @@ Universidad EAFIT
 
 # Descripcion
 
-El desarrollo del presente laboratorio está enfocado a la aplicación de los conocimientos adquiridos, específicamente al diseño, implementación y despliegue de una sala de chat con el uso de RPC, HTTP y los servicios de la nube de AWS.  
+El desarrollo del presente laboratorio está enfocado a la aplicación de los conocimientos adquiridos, específicamente al diseño, implementación y despliegue de una sala de chat con el uso de RPC el cual es un programa que utiliza una computadora para ejecutar código en otra máquina remota sin tener que preocuparse por las comunicaciones entre ambas,  gestionando asi la comunicación entre procesos de manera fiable y requiriendo un tiempo de procesamiento relativamente corto y usando HTTP/2.
 Para lograrlo debemos de seguir una serie de pasos enfocados al diseño lógico de la arquitectura y posteriormente ponerlo en práctica mediante el uso de Python y AWS.
 
 # Instalación
@@ -108,6 +108,7 @@ $ pythton3 client.py
 # Referencias:
 A continuación se encuentran las paginas de las cuales se investigó para desarrollar el código.
 
++ [Llamada a procedimiento remoto](https://es.wikipedia.org/wiki/Llamada_a_procedimiento_remoto) - Wikipedia
 + [gRPC (Google Remote Procedure Call)](https://grpc.io/docs/languages/python/quickstart/) - Python
 + [Velotio](https://www.velotio.com/engineering-blog/grpc-implementation-using-python)
 + [Melledijkstra](https://melledijkstra.github.io/science/chatting-with-grpc-in-python) - Chatting with gRPC
