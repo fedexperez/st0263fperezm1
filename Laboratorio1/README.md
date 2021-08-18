@@ -119,3 +119,4 @@ A continuación se encuentran las paginas de las cuales se investigo para desarr
 + [Pythonprogramming](https://pythonprogramming.net/sockets-tutorial-python-3/)
 + [GeeksforGeeks](https://www.geeksforgeeks.org/simple-chat-room-using-python/) - Simple Chat Room
 + [RealPython](https://realpython.com/python-sockets/#application-client-and-server)
++ [Python in PlainEnglish](https://python.plainenglish.io/build-a-chatroom-app-with-python-458fc435025a)
