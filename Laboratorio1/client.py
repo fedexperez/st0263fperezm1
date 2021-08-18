@@ -4,8 +4,13 @@ import errno
 import sys
 
 HEADER_LENGTH = 10
-IP = "127.0.0.1" #IP of the server
-PORT = 4444      #PORT of the server
+
+IP = ""
+PORT = ""
+
+while (len(IP) and len(PORT)) <= 0:
+    IP = input("IP: ")
+    PORT = input("PORT: ")
 
 print('Please type your username below')
 while True:

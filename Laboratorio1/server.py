@@ -1,18 +1,23 @@
 import socket  # To manage sockets
 import select  # To manage many connections on any system
 
-HEADER_LENGTH = 10
-IP = "127.0.0.1" #IP of the server
-PORT = 4444      #PORT of the server
+IP = ""
+PORT = ""
 
+while (len(IP) and len(PORT)) <= 0:
+    IP = input("IP: ")
+    PORT = input("PORT: ")
+
+HEADER_LENGTH = 10
 addressfamily = socket.AF_INET  # IPv4
 connection = socket.SOCK_STREAM  # TCP
 
 # Socket created SERVER
 server_socket = socket.socket(addressfamily, connection)
 server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-server_socket.bind((IP, PORT))
+server_socket.bind((str(IP), int(PORT)))
 server_socket.listen()
+
 
 # List of sockets that will be used
 sockets_list = [server_socket]
@@ -20,7 +25,7 @@ sockets_list = [server_socket]
 # socket => user header and name as data
 clients = {}
 
-print(f'Connection from {IP}:{PORT}')
+print('Connection from {}:{}'.format(IP, PORT))
 
 # Handles message receiving
 def receive_message(client_socket):
