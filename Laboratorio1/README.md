@@ -5,9 +5,9 @@ Universidad EAFIT
 
 # Autor
 
-Federico Pérez Morales
-fperezm1@eafit.edu.co
-201810008010
++ Federico Pérez Morales
++ fperezm1@eafit.edu.co
++ 201810008010
 
 # Pre-requisitos
 
@@ -16,7 +16,7 @@ fperezm1@eafit.edu.co
 
 # Descripcion
 
-El desarrollo del presente laboratorio está enfocado a la aplicación de los conocimientos adquiridos, específicamente al diseño, implementación y despliegue de una sala de chat con el uso de Sockets *TCP*, *AddressFamily* IPV4 y los servicios de la nube de AWS.  
+El desarrollo del presente laboratorio está enfocado a la aplicación de los conocimientos adquiridos, específicamente al diseño, implementación y despliegue de una sala de chat con el uso de Sockets *TCP* que permiten la transmisión de información en ambas direcciones con una alta confiabilidad, *AddressFamily* IPV4 para trabajar mas facilmente con las instancias y los servicios de la nube de AWS.  
 Para lograrlo debemos de seguir una serie de pasos enfocados al diseño lógico de la arquitectura y posteriormente ponerlo en práctica mediante el uso de Python y AWS.
 
 La aplicación está compuesta de distintas archivos de los cuales se hablará a continuación: 
