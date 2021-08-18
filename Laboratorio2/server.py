@@ -6,6 +6,7 @@ import grpc
 import protocol_pb2_grpc as chatrpc
 import protocol_pb2 as chat
 
+
 class ChatServer(chatrpc.ChatServerServicer):
 
     def __init__(self):
@@ -19,15 +20,20 @@ class ChatServer(chatrpc.ChatServerServicer):
                 lastindex += 1
                 yield n
 
-    def SendNote(self, request: chat.Note, context):
-        print("[{}] {}".format(request.name, request.message))
+    def SendData(self, request: chat.Data, context):
+        print('[{}] {}'.format(request.name, request.message))
         self.chats.append(request)
-        return chat.Empty() 
+        return chat.Empty()
 
 
 if __name__ == '__main__':
-    port = 4444
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))  #max workers = number of clients able to connect
+    port = ''
+
+    while len(port) <= 0:
+        port = input('PORT: ')
+
+    # max workers = number of clients able to connect
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     chatrpc.add_ChatServerServicer_to_server(ChatServer(), server)
     print('Starting server')
     server.add_insecure_port('[::]:' + str(port))
@@ -38,5 +44,6 @@ if __name__ == '__main__':
 
         except KeyboardInterrupt:
             print('Keyboard Interrupt, CTRL + C pressed')
-            server.stop()
+            print('Server stoped')
+            server.stop(grace=None)  # grace = duration of time in seconds or None to stop the server
             sys.exit()

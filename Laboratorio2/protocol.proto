@@ -4,12 +4,12 @@ package grpc;
 
 message Empty {}
 
-message Note {
-    string name = 1;
-    string message = 2;
+message Data { 
+    string name = 1; // Name of the client
+    string message = 2; // Message of the client
 }
 
 service ChatServer {
-    rpc ChatStream (Empty) returns (stream Note);
-    rpc SendNote (Note) returns (Empty);
+    rpc ChatStream (Empty) returns (stream Data);
+    rpc SendData (Data) returns (Empty);
 }
