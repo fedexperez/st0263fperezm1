@@ -72,7 +72,7 @@ $ sudo yum update
 ```
 $ sudo yum install git -y
 $ sudo yum install pip -y
-$ pip3 install grpcio grpcio-tools -y
+$ pip3 install grpcio grpcio-tools
 ```
 
 ### PARTE 4 – Descargar los archivos
