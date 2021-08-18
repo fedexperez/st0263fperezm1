@@ -17,11 +17,11 @@ class ChatServerStub(object):
         self.ChatStream = channel.unary_stream(
                 '/grpc.ChatServer/ChatStream',
                 request_serializer=protocol__pb2.Empty.SerializeToString,
-                response_deserializer=protocol__pb2.Note.FromString,
+                response_deserializer=protocol__pb2.Data.FromString,
                 )
-        self.SendNote = channel.unary_unary(
-                '/grpc.ChatServer/SendNote',
-                request_serializer=protocol__pb2.Note.SerializeToString,
+        self.SendData = channel.unary_unary(
+                '/grpc.ChatServer/SendData',
+                request_serializer=protocol__pb2.Data.SerializeToString,
                 response_deserializer=protocol__pb2.Empty.FromString,
                 )
 
@@ -30,14 +30,14 @@ class ChatServerServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def ChatStream(self, request, context):
-        """This bi-directional stream makes it possible to send and receive Notes between 2 persons
+        """This bi-directional stream makes it possible to send and receive Datas between 2 persons
         the call which is streaming (open connection)
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SendNote(self, request, context):
+    def SendData(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -49,11 +49,11 @@ def add_ChatServerServicer_to_server(servicer, server):
             'ChatStream': grpc.unary_stream_rpc_method_handler(
                     servicer.ChatStream,
                     request_deserializer=protocol__pb2.Empty.FromString,
-                    response_serializer=protocol__pb2.Note.SerializeToString,
+                    response_serializer=protocol__pb2.Data.SerializeToString,
             ),
-            'SendNote': grpc.unary_unary_rpc_method_handler(
-                    servicer.SendNote,
-                    request_deserializer=protocol__pb2.Note.FromString,
+            'SendData': grpc.unary_unary_rpc_method_handler(
+                    servicer.SendData,
+                    request_deserializer=protocol__pb2.Data.FromString,
                     response_serializer=protocol__pb2.Empty.SerializeToString,
             ),
     }
@@ -79,12 +79,12 @@ class ChatServer(object):
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/grpc.ChatServer/ChatStream',
             protocol__pb2.Empty.SerializeToString,
-            protocol__pb2.Note.FromString,
+            protocol__pb2.Data.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SendNote(request,
+    def SendData(request,
             target,
             options=(),
             channel_credentials=None,
@@ -94,8 +94,8 @@ class ChatServer(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/grpc.ChatServer/SendNote',
-            protocol__pb2.Note.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/grpc.ChatServer/SendData',
+            protocol__pb2.Data.SerializeToString,
             protocol__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
