@@ -109,7 +109,7 @@ $ pythton3 client.py
 ```
 + Paso 4: Escribir los mensajes con los clientes ya conectados al seridor y ver como el chat estará en funcionamiento.
 
-![Funcionamiento](https://github.com/fedexperez/st0263/blob/main/fperezm1chat.jpg?raw=true)
+![Funcionamiento](https://github.com/fedexperez/st0263fperezm1/blob/main/Laboratorio1/fperezm1chat.jpg?raw=true)
 
 # Referencias
 A continuación se encuentran las paginas de las cuales se investigo para desarrollar el código.
