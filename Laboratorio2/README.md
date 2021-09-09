@@ -1,6 +1,6 @@
 # Laboratorio 2
 
-Carpeta del Laboratorio 1 para la materia Tópicos especiales en Telemática - ST0263
+Carpeta del Laboratorio 2 para la materia Tópicos especiales en Telemática - ST0263
 Universidad EAFIT
 
 # Autor

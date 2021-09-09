@@ -1,10 +1,41 @@
 import pika
-connection = pika.BlockingConnection(pika.ConnectionParameters('34.227.108.184', 5672, '/', pika.PlainCredentials('user', 'password'))) 
+import sys
+
+ip = sys.argv[1:]
+port = sys.argv[2:]
+
+user = ""
+password = ""
+
+while (len(user) and len(password)) <= 0:
+    user = input("RabbitMQ user: ")
+    password = input("RabbitMQ password: ")
+
+connection = pika.BlockingConnection(pika.ConnectionParameters(
+    str(ip), port, '/', pika.PlainCredentials(user, password)))
 channel = connection.channel()
 
-channel.basic_publish(exchange='my_exchange', routing_key='test', body='Test!')
+channel.queue_declare(queue='my_app', durable=True)
 
-print("Runnning Producer Application...")
-print(" [x] Sent 'Hello World...!'")
+message = ''
 
-connection.close()
+print("Runnning Publisher Application...")
+
+while True:
+    try:
+        message = input('Message: ')
+        if message != '':
+            channel.basic_publish(
+                exchange='my_exchange',
+                routing_key='test',
+                body=message,
+                properties=pika.BasicProperties(
+                    delivery_mode=2,  # make message persistent
+                ))
+            print(f" [x] Sent {message}")
+
+    except KeyboardInterrupt:
+        print('Keyboard Interrupt, CTRL + C pressed')
+        print('Program closed')
+        connection.close()
+        sys.exit()

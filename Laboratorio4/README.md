@@ -67,13 +67,20 @@ Para la implementación y el despliegue del laboratorio se siguieron los siguien
 
 + Paso 1: Ejecutamos el siguiente comando desde SSH (putty) para actualizar el sistema.
 ```
-$ sudo yum update
+sudo yum update
 ```
 + Paso 2: Instalar recursos
 ```
-$ sudo yum install git -y
-$ sudo yum install pip -y
-$ pip3 install grpcio grpcio-tools
+sudo yum install git -y
+sudo yum install pip -y
+sudo yum install docker -y
+cd ~ && wget https://packages.erlang-solutions.com/erlang/rpm/centos/7/x86_64/esl-erlang_23.3.1-1~centos~7_amd64.rpm
+sudo yum install esl-erlang_23.3.1-1~centos~7_amd64.rpm -y
+sudo systemctl start docker -y
+sudo systemctl start docker -y
+sudo usermod -aG docker ec2-user -y
+udo docker run -d --hostname my-rabbit -p 15672:15672 -p 5672:5672 --name rabbitserver -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:management
+ 
 ```
 
 ### PARTE 4 – Descargar los archivos
@@ -95,24 +102,20 @@ $ sudo git clone <https://github.com/usuario/proyecto.git>
 ```
 $ cd "carpeta"
 ```
-+ Paso 2: Ejecutamos el archivo del servidor y se introduce la información solicitada, en el caso de IP se utiliza 0.0.0.0.
++ Paso 2: Ejecutamos el archivo del consumidor con los argumentos de la ip y el puerto de nuestro MOM RabbitMQ, y luego se introduce la información solicitada.
 ```
-$ pythton3 server.py
+$ pythton3 consumer.py 'ip' 'puerto'
 ```
-+ Paso 3: En una instancia distinta a la del servidor,ejecutamos el archivo del cliente y se introduce la información solicitada.
++ Paso 3: En una instancia distinta a la del cosumidor,ejecutamos el archivo del publicador con los argumentos de la ip y el puerto y se introduce la información solicitada.
 ```
-$ pythton3 client.py
+$ pythton3 publisher.py 'ip' 'puerto'
 ```
-+ Paso 4: Escribir los mensajes con los clientes ya conectados al seridor y ver como el chat estará en funcionamiento.
++ Paso 4: Escribir los mensajes con los clientes ya conectados al seridor y ver como los programas estaran funciónando junto con el envio de mensajes y la recepción de ellos.
 
 
 # Referencias:
 A continuación se encuentran las paginas de las cuales se investigó para desarrollar el código.
 
-+ [Llamada a procedimiento remoto](https://es.wikipedia.org/wiki/Llamada_a_procedimiento_remoto) - Wikipedia
-+ [gRPC (Google Remote Procedure Call)](https://grpc.io/docs/languages/python/quickstart/) - Python
-+ [Velotio](https://www.velotio.com/engineering-blog/grpc-implementation-using-python)
-+ [Melledijkstra](https://melledijkstra.github.io/science/chatting-with-grpc-in-python) - Chatting with gRPC
-+ [Melledijkstra](https://github.com/melledijkstra/python-grpc-chat) - GitHub
-+ [RealPython](https://realpython.com/python-sockets/#application-client-and-server)
-+ [gRPC Python](https://grpc.github.io/grpc/python/grpc.html)
++ [How to Install RabbitMQ on CentOS 7](https://www.vultr.com/docs/how-to-install-rabbitmq-on-centos-7)
++ [Queues](https://www.rabbitmq.com/queues.html) - RabbitMQ
++ [Instalación y ejemplos de RabbitMQ Message Broker](https://programmerclick.com/article/8374663598/)
