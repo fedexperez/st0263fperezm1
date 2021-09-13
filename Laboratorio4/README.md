@@ -35,7 +35,7 @@ Para la implementación y el despliegue del laboratorio se siguieron los siguien
 + Paso 5: Se selecciona la siguiente Amazon Machine Image: (La que viene por defecto).
 + Paso 6: Seleccionamos t2.micro y luego continuamos.
 + Paso 7: Presionamos Next o Continuar (dependiendo del idioma) hasta llegar a “configure security groups”.
-+ Paso 8: En “security groups” creamos una regla para TCP con el cual abrimos el puerto que deseamos usar.
++ Paso 8: En “security groups” creamos una regla para TCP con el cual abrimos el puerto que deseamos usar. En este caso nosotros abrimos el 15672 y el 5672.
 + Paso 9: Presionamos en “review and launch”.
 + Paso 10: Presionamos en “launch”.
 + Paso 11: Creamos una nueva “key pair” y le ponemos el nombre que queramos.
@@ -74,12 +74,13 @@ sudo yum update
 sudo yum install git -y
 sudo yum install pip -y
 sudo yum install docker -y
+pip install pika
 cd ~ && wget https://packages.erlang-solutions.com/erlang/rpm/centos/7/x86_64/esl-erlang_23.3.1-1~centos~7_amd64.rpm
 sudo yum install esl-erlang_23.3.1-1~centos~7_amd64.rpm -y
 sudo systemctl start docker -y
 sudo systemctl start docker -y
 sudo usermod -aG docker ec2-user -y
-udo docker run -d --hostname my-rabbit -p 15672:15672 -p 5672:5672 --name rabbitserver -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:management
+sudo docker run -d --hostname my-rabbit -p 15672:15672 -p 5672:5672 --name rabbitserver -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:management
  
 ```
 
