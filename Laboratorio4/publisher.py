@@ -1,8 +1,8 @@
 import pika
 import sys
 
-ip = sys.argv[1:]
-port = sys.argv[2:]
+ip = sys.argv[1]
+port = sys.argv[2]
 
 user = ""
 password = ""
@@ -12,7 +12,7 @@ while (len(user) and len(password)) <= 0:
     password = input("RabbitMQ password: ")
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(
-    str(ip), port, '/', pika.PlainCredentials(user, password)))
+    str(ip), int(port), '/', pika.PlainCredentials(user, password)))
 channel = connection.channel()
 
 channel.queue_declare(queue='my_app', durable=True)

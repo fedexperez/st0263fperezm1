@@ -74,12 +74,11 @@ sudo yum update
 sudo yum install git -y
 sudo yum install pip -y
 sudo yum install docker -y
-pip install pika
+pip3 install pika
 cd ~ && wget https://packages.erlang-solutions.com/erlang/rpm/centos/7/x86_64/esl-erlang_23.3.1-1~centos~7_amd64.rpm
 sudo yum install esl-erlang_23.3.1-1~centos~7_amd64.rpm -y
-sudo systemctl start docker -y
-sudo systemctl start docker -y
-sudo usermod -aG docker ec2-user -y
+sudo systemctl start docker
+sudo usermod -aG docker ec2-user
 sudo docker run -d --hostname my-rabbit -p 15672:15672 -p 5672:5672 --name rabbitserver -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:management
  
 ```

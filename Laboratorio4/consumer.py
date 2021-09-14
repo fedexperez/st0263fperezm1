@@ -2,8 +2,8 @@ import pika
 import time
 import sys
 
-ip = sys.argv[1:]
-port = sys.argv[2:]
+ip = sys.argv[1]
+port = sys.argv[2]
 
 user = ""
 password = ""
@@ -13,7 +13,7 @@ while (len(user) and len(password)) <= 0:
     password = input("RabbitMQ password: ")
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(
-    str(ip), port, '/', pika.PlainCredentials(user, password)))
+    str(ip), int(port), '/', pika.PlainCredentials(user, password)))
 
 
 def callback(ch, method, properties, body):
