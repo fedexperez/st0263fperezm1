@@ -53,9 +53,9 @@ class DBPostgresql:
         if not matches:
             self._connect.commit()
 
-    def __del__(self):
-        self._connect.close()
-        self._cur.close()
+    #def __del__(self):
+        #self._connect.close()
+        #self._cur.close()
 
     def insert(self, data):
 
