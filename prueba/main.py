@@ -39,8 +39,7 @@ def run():
     else:
         print('Comando inválido')
         time.sleep(1)
-
-    run()
+        run()
 
 
 def create_crobject():
@@ -49,7 +48,7 @@ def create_crobject():
         key = input("Escribe un numero entero como key: ")
         try:
             key = int(key)
-            break
+            return key
         except ValueError:
             print("La key es incorrecta: escribe un numero entero")
 
@@ -57,7 +56,7 @@ def create_crobject():
         value = input("Escribe el valor que deseas almacenar: ")
         try:
             value = str(value)
-            break
+            return value
         except ValueError:
             print("El valor es incorrecto escribelo de nuevo")
 
@@ -77,9 +76,9 @@ def list_crobjects():
     table = PrettyTable(db.get_schema().keys())
     for crobject in list_crobjects:
         table.add_row([
-            crobject.getid(),
-            crobject.getkey(),
-            crobject.getvalue(),
+            crobject.id_crobject,
+            crobject.key,
+            crobject.value,
         ])
 
     print(table)
@@ -90,13 +89,22 @@ def list_crobjects():
 def search_crobject():
 
     filter = {}
-    
-    print('Introduce una key ')
-    crkey = input('->')
-    # filter['KEY'] = crkey
+
+    print('1. Key')
+    print('2. Value')
+    command = input('Escriba aqui el numero de la opcion: ')
+
+    if command == '1':
+        print('Introduce una key ')
+        crkey = input('->')
+        filter['KEY'] = crkey
+    elif command == '2':
+        print('Introduce un valor ')
+        crvalue = input('->')
+        filter['VALUE'] = crvalue
 
     try:
-        list_crobjects = db.search_crobjects(crkey)
+        list_crobjects = db.search_crobjects(filter)
         if not list_crobjects:
             return print('No hay ningún objeto con ese criterio de búsqueda')
 
@@ -111,9 +119,9 @@ def _print_table_crobjects(list_crobjects):
     table = PrettyTable(db.get_schema().keys())
     for crobject in list_crobjects:
         table.add_row([
-            crobject.getid(),
-            crobject.getkey(),
-            crobject.getvalue(),
+            crobject.id_crobject,
+            crobject.key,
+            crobject.value,
         ])
 
     print(table)
@@ -130,12 +138,9 @@ def edit_crobject():
         key = input('Key: ')
         print('Y el value:')
         value = input('Value:')
-        print('Y el nuevo value:')
-        nvalue = input('Value:')
         try:
             data['KEY'] = key
-            data['VALUE'] = nvalue
-            break
+            data['VALUE'] = value
         except ValueError:
             print("El valor es incorrecto escribelo de nuevo")
 
@@ -151,35 +156,29 @@ def edit_crobject():
 
 def delete_crobject():
     list_crobjects()
-    key,value = getInput()
+
+    print('Introduce el id del contacto que quieres eliminar:')
+    id_object = input()
+
+    while True:
+        print('Introduce la key')
+        key = input('Key: ')
+        print('Y el value:')
+        value = input('Value:')
+        try:
+            data['KEY'] = key
+            data['VALUE'] = value
+        except ValueError:
+            print("El valor es incorrecto escribelo de nuevo")
         
     try:
-        res = db.delete(key,value)
+        res = db.delete(id_object)
         if res:
             print('Contacto eliminado con éxito')
     except Exception:
         print('Hubo un error, intentalo de nuevo')
         time.sleep(1)
         delete_crobject()
-
-def getInput():
-    while True:
-        key = input("Escribe un numero entero como key: ")
-        try:
-            key = int(key)
-            break
-        except ValueError:
-            print("La key es incorrecta: escribe un numero entero")
-
-    while True:
-        value = input("Escribe el valor: ")
-        try:
-            value = str(value)
-            break
-        except ValueError:
-            print("El valor es incorrecto escribelo de nuevo")
-
-    return key,value
 
 
 if __name__ == "__main__":

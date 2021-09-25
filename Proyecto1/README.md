@@ -17,10 +17,11 @@ Universidad EAFIT
 
 + Sistema operativo Windows o Linux
 + Tener instalado Python 3.7 o Python 3.8 (Fue probado y es funcional en estas dos versiones del software)
++ Base de datos PostgreSQL
 
 # Descripcion
 
-El desarrollo del presente proyecto está enfocado a la aplicación de los conocimientos adquiridos, específicamente al diseño, implementación y despliegue de una sala de chat con el uso de RPC el cual es un programa que utiliza una computadora para ejecutar código en otra máquina remota sin tener que preocuparse por las comunicaciones entre ambas,  gestionando asi la comunicación entre procesos de manera fiable y requiriendo un tiempo de procesamiento relativamente corto y usando HTTP/2.
+El desarrollo del presente proyecto está enfocado a la aplicación de los conocimientos adquiridos, específicamente al diseño, implementación y despliegue de un Sistema de Almacenamiento y Recuperación Distribuida de datos (SARDD)
 Para lograrlo debemos de seguir una serie de pasos enfocados al diseño lógico de la arquitectura y posteriormente ponerlo en práctica mediante el uso de Python y AWS.
 
 # Instalación
@@ -66,7 +67,12 @@ Para la implementación y el despliegue del laboratorio se siguieron los siguien
     + Por ultimo de click en Open, y presionamos que sí en el aviso que sale.
     + Si todo salió bien, deberá ver una terminal
 
-### PARTE 3 - Instalar librerías en nuestra máquina virtual
+### PARTE 3 - Crear base de Datos PostgreSQL en Amazon RDS
+
++ [Base de datos](https://docs.aws.amazon.com/es_es/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html)
++ Se debe recordar de poner el puerto 5432 abierto para poder ejecutar el programa en su totalidad.
+
+### PARTE 4 - Instalar librerías en nuestra máquina virtual
 
 + Paso 1: Ejecutamos el siguiente comando desde SSH (putty) para actualizar el sistema.
 ```
@@ -79,6 +85,9 @@ sudo yum install pip -y
 sudo yum install docker -y
 pip3 install cassandra-driver
 pip3 install pandas
+pip3 install prettytable
+pip3 install environs
+pip3 install psycopg2-binary
 ```
 
 ### PARTE 4 – Descargar los archivos
@@ -100,22 +109,18 @@ $ sudo git clone <https://github.com/usuario/proyecto.git>
 ```
 $ cd "carpeta"
 ```
-+ Paso 2: Ejecutamos el archivo del servidor y se introduce la información solicitada, en el caso de IP se utiliza 0.0.0.0.
++ Paso 2: Descargar o crear el archivo .env
++ Paso 3: Cuando se tenga el archivo .env con los datos respectivos, ejecutamos el archivo main.py
 ```
-$ pythton3 server.py
+$ pythton3 main.py
 ```
-+ Paso 3: En una instancia distinta a la del servidor,ejecutamos el archivo del cliente y se introduce la información solicitada.
-```
-$ pythton3 client.py
-```
-+ Paso 4: Escribir los mensajes con los clientes ya conectados al seridor y ver como el chat estará en funcionamiento.
-
-
-docker login
-docker pull datastax/dse-server:6.8.14
-docker run -p 9042:9042 -e DSLICENSE=accept --memory 1g --name cassandra1proyecto -d datastax/dse-server:6.8.14 -g -s -k
++ Paso 4: Ver como el programa estará en funcionamiento y poder hacer uso de él.
 
 # Referencias:
 A continuación se encuentran las paginas de las cuales se investigó para desarrollar el código.
 
-+ [OpenWebinars](https://openwebinars.net/blog/como-usar-apache-cassandra-con-python/)
++ [Base de datos](https://docs.aws.amazon.com/es_es/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html)
++ [PostgreSQL youtube](https://www.youtube.com/watch?v=t_Q5NTtYbx4)
++ [Python CRUD](https://cosasdedevs.com/posts/como-crear-un-crud-en-python-parte-1-estructura-y-clase/)
++ [Python Dictionaries](https://www.studytonight.com/python/dictionaries-in-python)
++ [Validar entrada](https://codingornot.com/08-python-validar-entradas-ejemplos)

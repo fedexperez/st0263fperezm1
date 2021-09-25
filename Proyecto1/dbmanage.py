@@ -24,13 +24,14 @@ class DBmanage:
         line = [id_crobject] + data
 
         with open(self._filename, mode='a', encoding='utf-16') as csv_file:
-            data_writer = csv.writer(csv_file, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+            data_writer = csv.writer(
+                csv_file, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
             data_writer.writerow(line)
 
         return True
 
     def get_last_id(self):
-        
+
         list_ids = []
         with open(self._filename, mode='r', encoding='utf-16') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=';')
@@ -47,7 +48,7 @@ class DBmanage:
             return 0
 
         # Ordenamos la lista de mayor a menor y retornamos el elemento de mayor tamaño
-        list_ids.sort(reverse = True) 
+        list_ids.sort(reverse=True)
         return int(list_ids[0])
 
     def get_all(self):
@@ -89,9 +90,10 @@ class DBmanage:
 
                     for key, value in enumerate(row):
                         file[list_header[key]] = value
-                    
+
                     for key_filter, value_filter in filter.items():
-                        matches = re.search(rf"{value_filter}", file[key_filter], re.IGNORECASE)
+                        matches = re.search(
+                            rf"{value_filter}", file[key_filter], re.IGNORECASE)
                         if matches:
                             list_data.append(file)
                             break
@@ -122,17 +124,20 @@ class DBmanage:
         data_csv = self.get_by_key_value(crkey, crvalue)
 
         if not data_csv:
-            raise Exception('No se ha encontrado el objecto con los valores indicados')
+            raise Exception(
+                'No se ha encontrado el objecto con los valores indicados')
 
         for key, value in data.items():
             data_csv[key] = value
 
-        tempfile = NamedTemporaryFile(mode='w', delete=False, encoding='utf-16')
+        tempfile = NamedTemporaryFile(
+            mode='w', delete=False, encoding='utf-16')
 
         list_header = []
         with open(self._filename, mode='r', encoding='utf-16') as csv_file, tempfile:
             csv_reader = csv.reader(csv_file, delimiter=';')
-            data_writer = csv.writer(tempfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+            data_writer = csv.writer(
+                tempfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
 
             is_header = True
             for row in csv_reader:
@@ -146,7 +151,7 @@ class DBmanage:
                     file = {}
                     for key, value in enumerate(row):
                         file[list_header[key]] = value
-                    
+
                     if file['KEY'] != data_csv['KEY'] and file['VALUE'] != data_csv['VALUE']:
                         data_writer.writerow(row)
                         continue
@@ -163,17 +168,20 @@ class DBmanage:
         data_csv = self.get_by_id(crkey, crvalue)
 
         if not data_csv:
-            raise Exception('No se ha encontrado el objecto con los valores enviados')
+            raise Exception(
+                'No se ha encontrado el objecto con los valores enviados')
 
         for key, value in data.items():
             data_csv[key] = value
 
-        tempfile = NamedTemporaryFile(mode='w', delete=False, encoding='utf-16')
+        tempfile = NamedTemporaryFile(
+            mode='w', delete=False, encoding='utf-16')
 
         list_header = []
         with open(self._filename, mode='r', encoding='utf-16') as csv_file, tempfile:
             csv_reader = csv.reader(csv_file, delimiter=';')
-            data_writer = csv.writer(tempfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+            data_writer = csv.writer(
+                tempfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
 
             is_header = True
             for row in csv_reader:
@@ -188,7 +196,7 @@ class DBmanage:
                     file = {}
                     for key, value in enumerate(row):
                         file[list_header[key]] = value
-                    
+
                     if file['KEY'] != data_csv['KEY'] and file['VALUE'] != data_csv['VALUE']:
                         data_writer.writerow(row)
                         continue
@@ -202,7 +210,7 @@ class DBmanage:
                     file = {}
                     for key, value in enumerate(row):
                         file[list_header[key]] = value
-                    
+
                     if file['KEY'] == data_csv['KEY'] and file['VALUE'] == data_csv['VALUE']:
                         continue
 
