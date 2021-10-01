@@ -11,7 +11,7 @@ Universidad EAFIT
 
 + Ricardo Saldarriaga Serna
 + rsaldarris@eafit.edu.co
-+ codigo
++ 201810038010
 
 # Pre-requisitos
 
