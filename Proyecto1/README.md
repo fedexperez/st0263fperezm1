@@ -83,7 +83,6 @@ sudo yum update
 sudo yum install git -y
 sudo yum install pip -y
 sudo yum install docker -y
-pip3 install cassandra-driver
 pip3 install pandas
 pip3 install prettytable
 pip3 install environs
