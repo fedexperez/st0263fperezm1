@@ -84,7 +84,7 @@ class DBPostgresql:
         self._launch_query(query)
 
     def get_by_key_value(self, crkey, crvalue):
-        query = f'SELECT * FROM public.{self._table_name} WHERE key = {crkey} AND key = {crvalue};'
+        query = f'SELECT * FROM public.{self._table_name} WHERE key = {crkey} AND value = {crvalue};'
 
         table_keys = []
         for schema_key in self._schema.keys():
@@ -108,8 +108,7 @@ class DBPostgresql:
                 list_filters.append(f"key = {field_value}")
 
                 where = " AND ".join(list_filters)
-            # where = f"key = {key}"
-
+            
         query = f'SELECT * FROM public.{self._table_name} WHERE {where};'
 
         table_keys = []

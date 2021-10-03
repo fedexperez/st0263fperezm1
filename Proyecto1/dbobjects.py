@@ -1,5 +1,4 @@
 from crobject import CRObject
-# from .dbmanage import DBmanage
 from dbpostgresql import DBPostgresql
 
 SCHEMA = {

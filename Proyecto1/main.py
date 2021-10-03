@@ -83,7 +83,7 @@ def list_crobjects():
         ])
 
     print(table)
-    print('Pulsa intro para salir')
+    print('Pulsa cualquier tecla para continuar')
     command = input()
 
 
@@ -93,7 +93,6 @@ def search_crobject():
 
     print('Introduce una key ')
     crkey = input('->')
-    # filter['KEY'] = crkey
 
     try:
         list_crobjects = db.search_crobjects(crkey)
@@ -126,11 +125,11 @@ def edit_crobject():
     data = {}
 
     while True:
-        print('Introduce la key')
+        print('\nIntroduce la key correspondiente')
         key = input('Key: ')
-        print('Y el value:')
+        print('\nAhora introduce el value correspondiente')
         value = input('Value:')
-        print('Y el nuevo value:')
+        print('\nPara finalizar escribe el nuevo valor que deseas guardar')
         nvalue = input('Value:')
         try:
             data['KEY'] = key
@@ -156,7 +155,7 @@ def delete_crobject():
     try:
         res = db.delete(key, value)
         if res:
-            print('Contacto eliminado con éxito')
+            print('Objeto eliminado con éxito')
     except Exception:
         print('Hubo un error, intentalo de nuevo')
         time.sleep(1)
