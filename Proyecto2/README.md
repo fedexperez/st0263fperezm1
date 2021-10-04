@@ -74,11 +74,12 @@ sudo yum update
 sudo yum install git -y
 sudo yum install pip -y
 sudo yum install docker -y
-pip3 install cassandra-driver
-pip3 install pandas
-pip3 install prettytable
-pip3 install environs
-pip3 install psycopg2-binary
+sudo yum install docker-compose -y
+sudo systemctl enable docker.service
+sudo systemctl start docker
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+pip3 install mysql
 ```
 
 ### PARTE 4 – Descargar los archivos
@@ -100,18 +101,20 @@ $ sudo git clone <https://github.com/usuario/proyecto.git>
 ```
 $ cd "carpeta"
 ```
-+ Paso 2: Descargar o crear el archivo .env
-+ Paso 3: Cuando se tenga el archivo .env con los datos respectivos, ejecutamos el archivo main.py
++ Paso 2: Ejecutamos el siguiente comando.
 ```
-$ pythton3 main.py
+$ sudo docker-compose up -d
 ```
-+ Paso 4: Ver como el programa estará en funcionamiento y poder hacer uso de él.
++ Paso 3: Ver como el programa estará en funcionamiento y poder hacer uso de él.
+
+gcloud beta compute ssl-certificates create worpress --project=proyecto2-327121 --global --domains=www.fperezmpr2.tk,fperezmpr2.tk
+
+
 
 # Referencias:
 A continuación se encuentran las paginas de las cuales se investigó para desarrollar el código.
 
-+ [Base de datos](https://docs.aws.amazon.com/es_es/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html)
-+ [PostgreSQL youtube](https://www.youtube.com/watch?v=t_Q5NTtYbx4)
-+ [Python CRUD](https://cosasdedevs.com/posts/como-crear-un-crud-en-python-parte-1-estructura-y-clase/)
-+ [Python Dictionaries](https://www.studytonight.com/python/dictionaries-in-python)
-+ [Validar entrada](https://codingornot.com/08-python-validar-entradas-ejemplos)
++ [Firewall GCP](https://cloud.google.com/vpc/docs/using-firewalls#console)
++ [Quickstart: Compose and WordPress](https://docs.docker.com/samples/wordpress/#bring-up-wordpress-in-a-web-browser)
++ [Install Docker Compose](https://docs.docker.com/compose/install/)
++ [Install Docker Compose](https://docs.docker.com/compose/install/)
