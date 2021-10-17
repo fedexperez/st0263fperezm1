@@ -20,3 +20,5 @@ services:
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORT: password
+volumes:
+  mysql: {}
