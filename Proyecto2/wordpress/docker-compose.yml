@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+  wordpress:
+    image: wordpress:5.8.1
+    container_name: wordpress
+    restart: always
+    volumes:
+      - wordpress_data:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: wpdb
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+    ports:
+      - 80:80
+volumes:
+  wordpress_data: {}
