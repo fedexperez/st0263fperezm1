@@ -29,6 +29,25 @@ Para lograrlo debemos de seguir una serie de pasos enfocados al diseño lógico 
 
 Para la implementación y el despliegue del laboratorio se siguieron los siguientes pasos:
 
+### PARTE 1 - Montar el proyecto en AWS
+
++ Paso 1: Nos conectamos al curso en AWS educate.
++ Paso 2: Ingresar a la consola “AWS console”.
++ Paso 3: Nos dirigimos a servicios EC2 instances.
++ Paso 4: Presionamos en donde dice “launch instance”.
++ Paso 5: Se selecciona la siguiente Amazon Machine Image: (La que viene por defecto).
++ Paso 6: Seleccionamos t2.micro y luego continuamos.
++ Paso 7: En la tercera perstaña debemos seleccionar un File System (Puede crearlo directamente desde ahí, y si ya tiene uno, usar ese mismo para las instancias que serán utilziadas por wordpress)
++ Paso 8: Presionamos Next o Continuar (dependiendo del idioma) hasta llegar a “configure security groups”.
++ Paso 9: En “security groups” creamos una regla para TCP con el cual abrimos el puerto que deseamos usar.
++ Paso 10: Presionamos en “review and launch”.
++ Paso 11: Presionamos en “launch”.
++ Paso 12: Creamos una nueva “key pair” y le ponemos el nombre que queramos.
++ Paso 13: Descargamos la clave .pem ya mas adelante la necesitaremos.
++ Paso 14: Presionamos en “launch instance”.
++ Paso 15: Nos dirigimos a servicios ec2 Running Instances.
++ Paso 16: Presionamos en la instancia que acabamos de crear y copiamos la DNS que también será necesaria más adelante.
+
 ### PARTE 1 - Obtener clave para VM del proyecto
 
 + Paso 1: Nos conectamos a la plataforma de GCP.
@@ -123,9 +142,70 @@ $ sudo docker-compose up -d
 
 # PARTE 6 - Configuración de dominio
 
-+ Paso 1: Dirigirnos a freenom e iniciar sesion. Si no tiene una cuenta deberá crearla y continuar con el Paso 2.
++ Paso 1: Dirigirnos a freenom e iniciar sesion. Si no tiene una cuenta deberá crearla. (https://my.freenom.com/)
 
-+ Paso 2:
++ Paso 2: Generar el nombre de dominio deseado.
+
++ Paso 3: En amazon buscar Route 53, dirigirse a DNS Management hosted zones
+
++ Paso 4: Crear una hosted zone con el nombre de dominio creado anteriormente. Ejemplo: telepr2.tk
+
++ Paso 5: Crear dos nuevos record, de tipo A con el nombre de nuestro dominio y el valor será la direccion ip publica de nuestro CMS.
+
++ Paso 6: Veremos un Record de tipo NS, esos valores los copiaremos uno en uno en los nameservers de nuestro dominio en freenom. Los cuales serían 4 en total.
+
+# PARTE 7 - Configuración de Load Balancer HaProxy
+
++ Paso 1: Generar una instancai en AWS
+
++ Paso 2
+```
+sudo su
+mkdir -p /opt/haproxy/
+vi haproxy.cfg
+```
+
+
++ Paso 3: En haproxy.cfg escribir lo siguiente:
+```
+global
+        log 127.0.0.1   local0
+        log 127.0.0.1   local1 debug
+        maxconn   45000 # Total Max Connections.
+        daemon
+        nbproc      1 # Number of processing cores.
+defaults
+        timeout server 86400000
+        timeout connect 86400000
+        timeout client 86400000
+        timeout queue   1000s
+
+frontend main
+        bind *:80
+        default_backend app
+
+# [HTTP Site Configuration]
+listen  http_web ipofhaproxyinstance:80
+        mode http
+        balance roundrobin  # Load Balancing algorithm
+        option httpchk
+        option forwardfor
+        server server1 fperezmpr2.tk weight 1 maxconn 512 check
+        server server2 rsaldarrispr2.tk weight 1 maxconn 512 check
+
+```
+
+
++ Paso 4: 
+```
+sudo yum install haproxy
+sudo yum install docker
+sudo amazon-linux-extras install docker -y
+sudo usermod -a -G docker ec2-user
+sudo systemctl enable docker.service
+sudo systemctl start docker
+docker run -d --name haproxy -p 80:80 -v /opt/haproxy:/usr/local/etc/haproxy:ro haproxy:1.7 tail -f /dev/null
+```
 
 # Referencias:
 A continuación se encuentran las paginas de las cuales se investigó para desarrollar el código.
@@ -134,7 +214,8 @@ A continuación se encuentran las paginas de las cuales se investigó para desar
 + [Quickstart: Compose and WordPress](https://docs.docker.com/samples/wordpress/#bring-up-wordpress-in-a-web-browser)
 + [Install Docker Compose](https://docs.docker.com/compose/install/)
 + [HaProxy](https://tecadmin.net/install-and-configure-haproxy-on-centos/)
++ [HaProxy Youtube](https://www.youtube.com/watch?v=77wXzh_Kjv0)
 + [Certificados SSL](https://certbot.eff.org/lets-encrypt/centosrhel7-other)
 + [Freenom](https://my.freenom.com/)
 + [Route 53 AMAZON](https://www.youtube.com/watch?v=cBohHhCN3TM)
-+ [Amazon EFS](https://www.youtube.com/watch?v=cBohHhCN3TM)
++ [Amazon EFS](https://www.youtube.com/watch?v=yKhE2hzlbqA)
