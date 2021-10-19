@@ -21,11 +21,11 @@ Universidad EAFIT
 # Descripcion
 
 El desarrollo del presente proyecto está enfocado a la aplicación de los conocimientos adquiridos, específicamente al diseño, implementación y despliegue de una aplicación open source LAMP de comunidad que represente un sistema de información del tipo Sistema de Gestión de Contenidos (CMS), en esté caso Wordpress.
-Para lograrlo debemos de seguir una serie de pasos enfocados al diseño lógico de la arquitectura y posteriormente ponerlo en práctica mediante el uso de Google Cloud Platafform (GCP) y Docker.
+Para lograrlo debemos de seguir una serie de pasos enfocados al diseño lógico de la arquitectura y posteriormente ponerlo en práctica mediante el uso de Google Cloud Platafform (GCP) o Amazon (AWS) y Docker.
 
 # Instalación
 
-## Despliegue del proyecto en GCP
+## Despliegue del proyecto
 
 Para la implementación y el despliegue del laboratorio se siguieron los siguientes pasos:
 
@@ -86,7 +86,7 @@ pip3 install mysql
 ```
 sudo yum install git -y
 sudo yum install pip -y
-sudo amazon-linux-extras install docker
+sudo amazon-linux-extras install docker -y
 sudo usermod -a -G docker ec2-user
 sudo systemctl enable docker.service
 sudo systemctl start docker
@@ -109,7 +109,7 @@ Ejemplo:
 $ sudo git clone <https://github.com/usuario/proyecto.git>
 ```
 
-# Ejecución
+# PARTE 5 - Ejecución
 
 + Paso 1: Ya dentro de la instacias que creamos, nos dirigimos al respectivo directorio del laboratorio.
 ```
@@ -121,9 +121,11 @@ $ sudo docker-compose up -d
 ```
 + Paso 3: Ver como el programa estará en funcionamiento y poder hacer uso de él.
 
-gcloud beta compute ssl-certificates create worpress --project=proyecto2-327121 --global --domains=www.fperezmpr2.tk,fperezmpr2.tk
+# PARTE 6 - Configuración de dominio
 
++ Paso 1: Dirigirnos a freenom e iniciar sesion. Si no tiene una cuenta deberá crearla y continuar con el Paso 2.
 
++ Paso 2:
 
 # Referencias:
 A continuación se encuentran las paginas de las cuales se investigó para desarrollar el código.
@@ -131,4 +133,8 @@ A continuación se encuentran las paginas de las cuales se investigó para desar
 + [Firewall GCP](https://cloud.google.com/vpc/docs/using-firewalls#console)
 + [Quickstart: Compose and WordPress](https://docs.docker.com/samples/wordpress/#bring-up-wordpress-in-a-web-browser)
 + [Install Docker Compose](https://docs.docker.com/compose/install/)
-+ [Install Docker Compose](https://docs.docker.com/compose/install/)
++ [HaProxy](https://tecadmin.net/install-and-configure-haproxy-on-centos/)
++ [Certificados SSL](https://certbot.eff.org/lets-encrypt/centosrhel7-other)
++ [Freenom](https://my.freenom.com/)
++ [Route 53 AMAZON](https://www.youtube.com/watch?v=cBohHhCN3TM)
++ [Amazon EFS](https://www.youtube.com/watch?v=cBohHhCN3TM)
