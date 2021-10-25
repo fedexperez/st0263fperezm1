@@ -121,38 +121,58 @@ pip3 install mysql
 Abra el proyecto en GitHub, y luego copie su ruta para poder clonarlo.
 + Paso 2: Aplique el siguiente comando:
 ```
-$ sudo git clone <URL PROYECTO>
+sudo git clone <URL PROYECTO>
 ```
 Ejemplo:
 ```
-$ sudo git clone <https://github.com/usuario/proyecto.git>
+sudo git clone <https://github.com/usuario/proyecto.git>
 ```
 
 # PARTE 5 - Ejecución
 
 + Paso 1: Ya dentro de la instacias que creamos, nos dirigimos al respectivo directorio del laboratorio.
 ```
-$ cd "carpeta"
+cd st0263
+cd Proyecto2
 ```
-+ Paso 2: Ejecutamos el siguiente comando.
++ Paso 2: Editar el archivo dorcker-compose de wordpress con el comando "sudo vi docker-compose.yml" .
 ```
-$ sudo docker-compose up -d
+version: '3.1'
+services:
+  wordpress:
+    image: wordpress:5.8.1
+    container_name: wordpress
+    restart: always
+    volumes:
+      - wordpress_data:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: privateipaddressofdb:3306
+      WORDPRESS_DB_NAME: wpdb
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+    ports:
+      - 80:80
+      - 443:443
+volumes:
+  wordpress_data: {}
 ```
-+ Paso 3: Ver como el programa estará en funcionamiento y poder hacer uso de él.
++ Paso 3: Ir a la carpeta de wordpress y la carpeta de database para ejecutar el siguiente comando en cada una.
+```
+sudo docker-compose up -d
+```
++ Paso 4: Ver como el programa estará en funcionamiento y poder hacer uso de él.
 
 # PARTE 6 - Configuración de dominio
 
 + Paso 1: Dirigirnos a freenom e iniciar sesion. Si no tiene una cuenta deberá crearla. (https://my.freenom.com/)
 
-+ Paso 2: Generar el nombre de dominio deseado.
++ Paso 2: Generar el nombre de dominio deseado, deseablemente un dominio que finalice en .ml .
 
-+ Paso 3: En amazon buscar Route 53, dirigirse a DNS Management hosted zones
-
-+ Paso 4: Crear una hosted zone con el nombre de dominio creado anteriormente. Ejemplo: telepr2.tk
++ Paso 3: En Cloudfare, registrar los nombres de los dominios generados.
 
 + Paso 5: Crear dos nuevos record, de tipo A con el nombre de nuestro dominio y el valor será la direccion ip publica de nuestro CMS.
 
-+ Paso 6: Veremos un Record de tipo NS, esos valores los copiaremos uno en uno en los nameservers de nuestro dominio en freenom. Los cuales serían 4 en total.
++ Paso 6: Dos daran dos nameservers, esos valores los copiaremos uno en uno en los nameservers de nuestro dominio en freenom.
 
 # PARTE 7 - Configuración de Load Balancer HaProxy
 
