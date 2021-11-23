@@ -1,6 +1,6 @@
-# Laboratorio 3
+# Laboratorio 4
 
-Carpeta del Laboratorio 3 para la materia Tópicos especiales en Telemática - ST0263
+Carpeta del Laboratorio 4 para la materia Tópicos especiales en Telemática - ST0263
 Universidad EAFIT
 
 # Autor
@@ -61,50 +61,40 @@ Para la implementación y el despliegue del laboratorio se siguieron los siguien
 
 ### PARTE 3 - Realización de actividad HDFS y WordCount
 
-+ https://github.com/st0263eafit/st0263_20212/tree/main/bigdata/03-spark
-+ https://github.com/st0263eafit/st0263_20212/blob/main/bigdata/lab3-1-pyspark-wordcount.txt
++ https://github.com/st0263eafit/st0263_20212/tree/main/bigdata/04-hive-sparksql
 
 ### Bucket S3
 
-+ Guttenberg-Small: s3://datasetsfperezm1/gutenberg-small/
-+ Guttenberg: s3://datasetsfperezm1/gutenberg/
++ Covid: s3://datasetsfperezm1/covid/Casos_positivos_de_COVID-19_en_Colombia.csv
++ Covid con nombres de columnas sin espacios y caracteres especiales: s3://datasetsfperezm1/covid/new/part-00000-398de3f2-507f-4d83-ada0-75cfdee18a5e-c000.csv
 
-### Uri
-+ *Datos Salida:*  s3://datasetsfperezm1/tres/
-    + s3://datasetsfperezm1/tres/tres_uno/
-    + s3://datasetsfperezm1/tres/tres_dos/
-    + s3://datasetsfperezm1/tres/tres_tres/
-    + s3://datasetsfperezm1/tres/tres_cuatro/
-    + s3://datasetsfperezm1/tres/tres_cinco/
+### Uri datos de salida punto 2
++ *Datos Salida:*  s3://datasetsfperezm1/lab4/
+    + s3://datasetsfperezm1/lab4/dos_uno/
+    + s3://datasetsfperezm1/lab4/dos_dos/
+    + s3://datasetsfperezm1/lab4/dos_tres/
+    + s3://datasetsfperezm1/lab4/dos_cuatro/
+    + s3://datasetsfperezm1/lab4/dos_cinco/
 
-+ *Gutenberg Small WordCount:* s3://datasetsfperezm1/gutenberg-small-wordcount/
 
 ### Imagenes del desarrollo
 
-A continuación se encuentran imagenes del desarrollo en SSH, donde se pueden apreciar los comandos ejecutados para su facil entendimiento.
-#### Parte 1 y 2
-![](EMR-SSH1.png)
-![](EMR-SSH2.png)
-
-![](PYTHON-EMR-SSH.png)
-
 #### Parte 3
 
-Sección 2
-![](1Datos.png)
+Sección Jupyter
 
-![2.2](2.2.png)
-![2.3](2.3.png)
-![2.4](2.4.png)
-![2.5](2.5.png)
-![2.6](2.6.png)
-![2.7](2.7.png)
+![2.1](Lab4_2_1.png)
+![2.2](Lab4_2_2.png)
+![2.3](Lab4_2_3.png)
+![2.4](Lab4_2_4.png)
+![2.5](Lab4_2_5.png)
 
-Sección 3
-![3.1](3.1.png)
-![3.2](3.2.png)
-![3.3](3.3.png)
-![3.4](3.4.png)
+Sección Zepellin
+![2.1](Z1.png)
+![2.2](Z2.png)
+![2.3](Z3.png)
+![2.4](Z4.png)
+![2.5](Z5.png)
 
 # Referencias:
 A continuación se encuentran las paginas de las cuales se investigó para desarrollar el laboratorio.
@@ -112,4 +102,3 @@ A continuación se encuentran las paginas de las cuales se investigó para desar
 + [Python Spark Shell – PySpark](https://www.tutorialkart.com/apache-spark/python-spark-shell-pyspark-example/)
 + [Examples of accessing Amazon S3 data from Spark](https://docs.cloudera.com/runtime/7.2.10/developing-spark-applications/topics/spark-examples-of-accessing-s3-data-from-spark.html)
 + [Apache Spark Word Count example - Spark Shell](https://www.youtube.com/watch?v=HQTB3hlLD6E)
-+ []()

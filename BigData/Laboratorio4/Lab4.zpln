@@ -1,0 +1,509 @@
+﻿{
+  "paragraphs": [
+    {
+      "user": "anonymous",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=0",
+              "$$hashKey": "object:1680"
+            },
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=1",
+              "$$hashKey": "object:1681"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637695678259_1805338820",
+      "id": "paragraph_1637695678259_1805338820",
+      "dateCreated": "2021-11-23T19:27:58+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:1075",
+      "text": "%spark.pyspark\ndf = spark.read.csv(\"s3://datasetsfperezm1/covid/new/part-00000-398de3f2-507f-4d83-ada0-75cfdee18a5e-c000.csv\",inferSchema=True,header=True)",
+      "dateUpdated": "2021-11-23T19:38:12+0000",
+      "dateFinished": "2021-11-23T19:38:47+0000",
+      "dateStarted": "2021-11-23T19:38:12+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      }
+    },
+    {
+      "text": "%spark.pyspark\ndf.createOrReplaceTempView(\"covid\")",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-23T19:39:50+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637696338181_1758823508",
+      "id": "paragraph_1637696338181_1758823508",
+      "dateCreated": "2021-11-23T19:38:58+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:1686",
+      "dateFinished": "2021-11-23T19:39:50+0000",
+      "dateStarted": "2021-11-23T19:39:50+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      }
+    },
+    {
+      "text": "%spark.pyspark\nsqlDF = spark.sql(\"SELECT * FROM covid\")\nsqlDF.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-23T19:40:05+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=2",
+              "$$hashKey": "object:1965"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637696382533_818192532",
+      "id": "paragraph_1637696382533_818192532",
+      "dateCreated": "2021-11-23T19:39:42+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:1766",
+      "dateFinished": "2021-11-23T19:40:14+0000",
+      "dateStarted": "2021-11-23T19:40:05+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------------+------+-----------------+-----------------------+------------+-----------------------+---------+----+----------+----+------------+-------------+------+-------------+------+----------+-------------------+-----------+-----------------+-----------------+----------------+-----------------+-----------------+\n|  FechaReporteWeb|IdCaso|FechaNotificacion|CodDIVIPOLAdepartamento|Departamento|CodigoDIVIPOLAmunicipio|Municipio|Edad|MedidaEdad|Sexo|TipoContagio|UbicacionCaso|Estado|CodigoIsoPais|  Pais|Recuperado|FechaInicioSintomas|FechaMuerte| FechaDiagnostico|FechaRecuperacion|TipoRecuperacion|PertenenciaEtnica|NombreGrupoEtnico|\n+-----------------+------+-----------------+-----------------------+------------+-----------------------+---------+----+----------+----+------------+-------------+------+-------------+------+----------+-------------------+-----------+-----------------+-----------------+----------------+-----------------+-----------------+\n| 6/3/2020 0:00:00|     1| 2/3/2020 0:00:00|                     11|      BOGOTA|                  11001|   BOGOTA|  19|         1|   F|   Importado|         Casa|  Leve|          380|ITALIA|Recuperado|  27/2/2020 0:00:00|       null| 6/3/2020 0:00:00|13/3/2020 0:00:00|             PCR|                6|             null|\n| 9/3/2020 0:00:00|     2| 6/3/2020 0:00:00|                     76|       VALLE|                  76111|     BUGA|  34|         1|   M|   Importado|         Casa|  Leve|          724|ESPAÑA|Recuperado|   4/3/2020 0:00:00|       null| 9/3/2020 0:00:00|19/3/2020 0:00:00|             PCR|                5|             null|\n| 9/3/2020 0:00:00|     3| 7/3/2020 0:00:00|                      5|   ANTIOQUIA|                   5001| MEDELLIN|  50|         1|   F|   Importado|         Casa|  Leve|          724|ESPAÑA|Recuperado|  29/2/2020 0:00:00|       null| 9/3/2020 0:00:00|15/3/2020 0:00:00|             PCR|                6|             null|\n|11/3/2020 0:00:00|     4| 9/3/2020 0:00:00|                      5|   ANTIOQUIA|                   5001| MEDELLIN|  55|         1|   M| Relacionado|         Casa|  Leve|         null|  null|Recuperado|   6/3/2020 0:00:00|       null|11/3/2020 0:00:00|26/3/2020 0:00:00|             PCR|                6|             null|\n|11/3/2020 0:00:00|     5| 9/3/2020 0:00:00|                      5|   ANTIOQUIA|                   5001| MEDELLIN|  25|         1|   M| Relacionado|         Casa|  Leve|         null|  null|Recuperado|   8/3/2020 0:00:00|       null|11/3/2020 0:00:00|23/3/2020 0:00:00|             PCR|                6|             null|\n+-----------------+------+-----------------+-----------------------+------------+-----------------------+---------+----+----------+----+------------+-------------+------+-------------+------+----------+-------------------+-----------+-----------------+-----------------+----------------+-----------------+-----------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%spark.pyspark\nsqlDF = spark.sql(\"SELECT Departamento, COUNT(*) AS numInstances FROM covid GROUP BY Departamento ORDER BY numInstances DESC;\")\nsqlDF.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-23T19:40:30+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=3",
+              "$$hashKey": "object:2142"
+            },
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=4",
+              "$$hashKey": "object:2143"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637696405363_1238205238",
+      "id": "paragraph_1637696405363_1238205238",
+      "dateCreated": "2021-11-23T19:40:05+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:1872",
+      "dateFinished": "2021-11-23T19:40:47+0000",
+      "dateStarted": "2021-11-23T19:40:30+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------+------------+\n|Departamento|numInstances|\n+------------+------------+\n|      BOGOTA|     1459299|\n|   ANTIOQUIA|      763684|\n|       VALLE|      414316|\n|CUNDINAMARCA|      265748|\n|   SANTANDER|      228328|\n|BARRANQUILLA|      213785|\n|   CARTAGENA|      125639|\n|   ATLANTICO|      122174|\n|      TOLIMA|      107949|\n|      BOYACA|      106123|\n+------------+------------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%spark.pyspark\nsqlDosDos = spark.sql(\"SELECT Municipio, COUNT(*) AS casos FROM covid GROUP BY Municipio ORDER BY casos DESC;\")\nsqlDosDos.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-23T19:58:12+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=5",
+              "$$hashKey": "object:2419"
+            },
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=6",
+              "$$hashKey": "object:2420"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637696428321_1119425728",
+      "id": "paragraph_1637696428321_1119425728",
+      "dateCreated": "2021-11-23T19:40:28+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:1968",
+      "dateFinished": "2021-11-23T19:58:30+0000",
+      "dateStarted": "2021-11-23T19:58:12+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------+-------+\n|   Municipio|  casos|\n+------------+-------+\n|      BOGOTA|1459299|\n|    MEDELLIN| 418808|\n|        CALI| 285627|\n|BARRANQUILLA| 213785|\n|   CARTAGENA| 125639|\n| BUCARAMANGA| 108456|\n|      IBAGUE|  75221|\n| SANTA MARTA|  69868|\n|   MANIZALES|  69772|\n|       BELLO|  63209|\n+------------+-------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%spark.pyspark\nsqlDosTres = spark.sql(\"SELECT FechaReporteWeb, COUNT(*) AS casos FROM covid GROUP BY FechaReporteWeb ORDER BY casos DESC;\")\nsqlDosTres.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-23T19:58:13+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=7",
+              "$$hashKey": "object:2459"
+            },
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=8",
+              "$$hashKey": "object:2460"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637696442001_1970013684",
+      "id": "paragraph_1637696442001_1970013684",
+      "dateCreated": "2021-11-23T19:40:42+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:2058",
+      "dateFinished": "2021-11-23T19:58:36+0000",
+      "dateStarted": "2021-11-23T19:58:13+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------------+-----+\n|  FechaReporteWeb|casos|\n+-----------------+-----+\n|26/6/2021 0:00:00|33593|\n|24/6/2021 0:00:00|32997|\n|25/6/2021 0:00:00|32732|\n|27/6/2021 0:00:00|32377|\n| 4/6/2021 0:00:00|30000|\n|12/6/2021 0:00:00|29998|\n|23/6/2021 0:00:00|29996|\n|17/6/2021 0:00:00|29945|\n|11/6/2021 0:00:00|29570|\n|10/6/2021 0:00:00|29302|\n+-----------------+-----+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%spark.pyspark\nsqlDosCuatro = spark.sql(\"SELECT Edad,( COUNT(*) / (select count(*) from covid) )* 100 AS casos FROM covid GROUP BY Edad ORDER BY casos DESC;\")\nsqlDosCuatro.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-23T19:58:14+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=9",
+              "$$hashKey": "object:2509"
+            },
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=10",
+              "$$hashKey": "object:2510"
+            },
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=12",
+              "$$hashKey": "object:2511"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637696473327_148995524",
+      "id": "paragraph_1637696473327_148995524",
+      "dateCreated": "2021-11-23T19:41:13+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:2148",
+      "dateFinished": "2021-11-23T19:58:46+0000",
+      "dateStarted": "2021-11-23T19:58:30+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----+------------------+\n|Edad|             casos|\n+----+------------------+\n|  30|2.4467009809221603|\n|  28|2.4286279687303165|\n|  29|2.4269020059853217|\n|  27|2.3946245187886914|\n|  26|2.3905774337314623|\n|  31|2.3843679355799283|\n|  32| 2.328482452216126|\n|  25| 2.296383512889668|\n|  33|2.2411130277453473|\n|  35| 2.227424357698835|\n+----+------------------+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%spark.pyspark\nsqlDosCinco = spark.sql(\"SELECT Sexo, COUNT(*) AS casos FROM covid GROUP BY Sexo ORDER BY casos DESC;\")\nsqlDosCinco.show(4)",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-23T19:58:15+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=13",
+              "$$hashKey": "object:2540"
+            },
+            {
+              "jobUrl": "http://ip-172-31-49-222.ec2.internal:4040/jobs/job?id=14",
+              "$$hashKey": "object:2541"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637696482767_703596732",
+      "id": "paragraph_1637696482767_703596732",
+      "dateCreated": "2021-11-23T19:41:22+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:2217",
+      "dateFinished": "2021-11-23T19:58:51+0000",
+      "dateStarted": "2021-11-23T19:58:36+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----+-------+\n|Sexo|  casos|\n+----+-------+\n|   F|2646975|\n|   M|2393679|\n|   m|      6|\n|   f|      5|\n+----+-------+\n\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%spark.pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-11-23T19:58:15+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1637697495645_277123592",
+      "id": "paragraph_1637697495645_277123592",
+      "dateCreated": "2021-11-23T19:58:15+0000",
+      "status": "READY",
+      "focus": true,
+      "$$hashKey": "object:2331"
+    }
+  ],
+  "name": "Lab4",
+  "id": "2GP6CJXEC",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/Lab4"
+}
